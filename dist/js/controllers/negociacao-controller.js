@@ -1,22 +1,29 @@
 import { Negociacao } from "../models/negociacao.js";
-// function parseDate(value: string): Date {
-//     const [ano, mes, dia] = value.split('-').map(Number);
-//     return new Date(ano, mes - 1, dia);
-// }
+import { Negociacoes } from "../models/negociacoes.js";
+function parseDate(value) {
+    if (!value)
+        throw new Error("O campo data eestá vazio.");
+    const [ano, mes, dia] = value.split('-').map(Number);
+    return new Date(ano, mes - 1, dia);
+}
 export class NegociacaoController {
     constructor() {
+        this.negociacoes = new Negociacoes();
         this.inputData = document.querySelector('#data'); //as HTMLInputElement;
         this.inputQuantidade = document.querySelector('#quantidade'); //as HTMLInputElement;
         this.inputValor = document.querySelector('#valor'); //as HTMLInputElement;
     }
     adiciona() {
         const negociacao = this.criaNegociacao();
-        console.log(negociacao);
+        negociacao.data.setDate(12);
+        this.negociacoes.adiciona(negociacao);
+        console.log(this.negociacoes.lista());
         this.limparFormulario();
     }
     criaNegociacao() {
-        const exp = /-/g; // expressão regular
-        const date = new Date(this.inputData.value.replace(exp, ','));
+        //const exp = /-/g; // expressão regular
+        //const date = new Date(this.inputData.value.replace(exp, ','));
+        const date = parseDate(this.inputData.value);
         const quantidade = parseInt(this.inputQuantidade.value);
         const valor = parseFloat(this.inputValor.value);
         return new Negociacao(date, quantidade, valor);
@@ -25,7 +32,7 @@ export class NegociacaoController {
         this.inputData.value = '';
         this.inputQuantidade.value = '';
         this.inputValor.value = '';
-        this.inputData, focus();
+        this.inputData.focus();
     }
 }
 // import { Negociacao } from '../models/negociacao.js';

@@ -1,3 +1,14 @@
+export class Negociacoes {
+    constructor() {
+        this.negociacoes = [];
+    }
+    adiciona(negociacao) {
+        this.negociacoes.push(negociacao);
+    }
+    lista() {
+        return this.negociacoes;
+    }
+}
 // import { Negociacao } from './negociacao.js';
 // export class Negociacoes {
 //     private negociacoes: Negociacao[] = [];
