@@ -1,5 +1,6 @@
 import { Negociacao } from "../models/negociacao.js";
 import { Negociacoes } from "../models/negociacoes.js";
+import { NegociacoesView } from "../views/negociacoes-view.js";
 
 function parseDate(value: string): Date{
     if (!value) throw new Error("O campo data eestá vazio.");
@@ -12,18 +13,21 @@ export class NegociacaoController {
     private inputQuantidade: HTMLInputElement;
     private inputValor: HTMLInputElement;
     private negociacoes = new Negociacoes();
+    private negociacoesView = new NegociacoesView('#negociacoesView');
 
     constructor() {
         this.inputData = document.querySelector('#data') //as HTMLInputElement;
         this.inputQuantidade = document.querySelector('#quantidade') //as HTMLInputElement;
         this.inputValor = document.querySelector('#valor') //as HTMLInputElement;
+        this.negociacoesView.update(this.negociacoes);
+        //this.negociacoesView.template();
     }
 
     adiciona(): void {
         const negociacao = this.criaNegociacao();
-        negociacao.data.setDate(12);
+        
         this.negociacoes.adiciona(negociacao);
-        console.log(this.negociacoes.lista());
+        this.negociacoesView.update(this.negociacoes);
         this.limparFormulario();
     }
 
