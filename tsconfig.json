@@ -1,10 +1,12 @@
 {
     "compilerOptions": {
-        "outDir": "dist/js",
+        "outDir": "app/dist/js",
         "target": "ES6",
         "noEmitOnError": true,
         "noImplicitAny": true,
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "removeComments": true,
+        "strictNullChecks": true
     },
-    "include": ["app/**/*"]
+    "include": ["app/src/**/*", "app/src/app.ts"]
 }
