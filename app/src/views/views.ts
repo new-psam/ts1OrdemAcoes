@@ -17,10 +17,12 @@ export abstract class View<T> {
 
     protected abstract template(mode: T): string;
     
-    @logarTempoDeExecucao(true)
-    @inspect
+    
     public update(model: T): void {
         let template = this. template(model);
         this.element.innerHTML = template;
     }
 }
+
+// @logarTempoDeExecucao(true)
+//     @inspect
