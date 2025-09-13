@@ -1,5 +1,4 @@
-import { inspect } from "../docorators/inspect.js";
-import { logarTempoDeExecucao } from "../docorators/logar-tempo-execucao.js";
+
 
 export abstract class View<T> {
     protected element : HTMLElement;
